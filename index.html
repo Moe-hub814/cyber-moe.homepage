@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
@@ -50,11 +49,7 @@
     section { padding:8rem 8%; max-width:1600px; margin:auto; position:relative; }
     h2 { font-family:'Orbitron',sans-serif; font-size:3.8rem; text-align:center; margin-bottom:3rem; background:linear-gradient(90deg,var(--accent),var(--accent-green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .instructor { text-align:center; margin-bottom:6rem; }
-    .instructor img { width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; }
-    .previews { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:2.5rem; }
-    .preview-card { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.4s; backdrop-filter:blur(8px); }
-    .preview-card:hover { transform:translateY(-8px); box-shadow:0 0 40px var(--glow); }
-    .preview-card video { width:100%; height:auto; loading:lazy; }
+    .instructor img { width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; loading:lazy; }
     .pricing { display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:2rem; align-items:stretch; } /* balanced heights */
     @media (max-width: 1100px) { .pricing { grid-template-columns:1fr; gap:3rem; } .pricing .card:nth-child(2) { order: -1; } }
     .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2.5rem; transition:all 0.4s; display:flex; flex-direction:column; justify-content:space-between; }
@@ -99,6 +94,9 @@
     button { background:var(--accent); color:#000; border:none; padding:1.4rem; font-size:1.25rem; font-weight:600; cursor:pointer; border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.4s; }
     button:hover { box-shadow:0 0 50px var(--glow); transform:scale(1.03); }
     footer { text-align:center; padding:4rem 8%; color:#66ddff; border-top:1px solid #004466; font-size:0.95rem; }
+    details { margin-bottom:1.5rem; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; transition:all 0.3s; }
+    details:hover { box-shadow:0 0 20px var(--glow); }
+    summary { font-weight:600; cursor:pointer; color:var(--accent); }
   </style>
 </head>
 <body>
@@ -108,7 +106,7 @@
   <header>
     <nav>
       <a href="#pricing">Programs</a>
-      <a href="#previews">Previews</a>
+      <a href="#faq">FAQ</a>
       <a href="#testimonials">Testimonials</a>
       <a href="#alumni-work">Alumni Employers</a>
       <a href="#contact">Contact</a>
@@ -128,7 +126,7 @@
   </section>
 
   <section class="instructor">
-    <img src="cyber-moe.jpg" alt="Cyber Moe – Founder & Instructor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem;">
+    <img src="cyber-moe.jpg" alt="Cyber Moe – Founder & Instructor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; loading:lazy;">
     <h2>Meet Your Instructor</h2>
     <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; margin:1.5rem 0;">
       <img src="cisa-badge.png" alt="CISA Certified" class="cert-badge">
@@ -154,18 +152,21 @@
     </div>
   </section>
 
-  <section id="previews">
-    <h2>Sneak Peek: Core Course Modules</h2>
-    <div style="max-width:800px; margin:auto;">
-      <div class="preview-card">
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-          <video id="preview-video" style="position:absolute; top:0; left:0; width:100%; height:100%;" controls preload="metadata">
-            <source src="rmf-categorization.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p style="padding:1rem; text-align:center; font-weight:500;">RMF Categorization Module</p>
-      </div>
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div style="max-width:800px; margin:auto; text-align:left;">
+      <details style="margin-bottom:1.5rem;">
+        <summary style="font-weight:600; cursor:pointer; color:var(--accent);">Do I need a security clearance?</summary>
+        <p>While a security clearance is highly recommended for federal cybersecurity roles, it's not required to enroll in the course. Our program includes guidance on navigating clearance processes to help you get started.</p>
+      </details>
+      <details style="margin-bottom:1.5rem;">
+        <summary style="font-weight:600; cursor:pointer; color:var(--accent);">Do I need to know how to code?</summary>
+        <p>Absolutely not. The course focuses on practical cybersecurity concepts, frameworks, and tools—no coding experience is necessary. We emphasize real-world application for all skill levels.</p>
+      </details>
+      <details style="margin-bottom:1.5rem;">
+        <summary style="font-weight:600; cursor:pointer; color:var(--accent);">How long does the course usually take?</summary>
+        <p>Students typically complete the course and become interview-ready within 6 weeks, depending on their pace and prior experience. The self-paced format allows flexibility to fit your schedule.</p>
+      </details>
     </div>
   </section>
 
@@ -232,17 +233,17 @@
     <h2>Success Stories</h2>
     <div class="testimonials">
       <div class="testimonial">
-        <img src="mark-nap.png" alt="Mark Nap" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
+        <img src="mark-nap.png" alt="Mark Nap" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading:lazy">
         <div class="quote">"I came in with zero cybersecurity experience. After completing CyberMoe's training and mentorship program, I landed an Information Systems Security Engineer role in the federal space. If you're serious about breaking into federal cybersecurity, this course is the real deal."</div>
         <div class="author">— Mark Nap, B.S. Penn State University</div>
       </div>
       <div class="testimonial">
-        <img src="zanein-prater.png" alt="Zanein Prater" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
+        <img src="zanein-prater.png" alt="Zanein Prater" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading:lazy">
         <div class="quote">"As a veteran, I understood the importance of cybersecurity but needed the right guidance to break into the field. CyberMoe's expertise opened multiple doors on my cyber journey. Since completing the course, I've doubled my salary and gained the skills to thrive in this industry."</div>
         <div class="author">— Zanein Prater, U.S. Air Force Veteran</div>
       </div>
       <div class="testimonial">
-        <img src="marcus-gross.jpg" alt="Marcus S. Gross" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
+        <img src="marcus-gross.jpg" alt="Marcus S. Gross" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading:lazy">
         <div class="quote">"As a U.S. combat veteran, I was leaving the military without a clear plan. CyberMoe introduced me to cybersecurity and taught me everything I needed to succeed in information security. Within months, I doubled my salary. I highly recommend CyberMoe Academy to anyone looking to make a career change."</div>
         <div class="author">— Marcus S. Gross, U.S. Army Veteran</div>
       </div>
@@ -317,324 +318,4 @@
     <p>CyberMoe Academy © 2026 • <a href="https://www.instagram.com/Cybermoe_" target="_blank" style="color:var(--accent);">Follow @Cybermoe_ on Instagram</a> • <a href="/privacy" style="color:var(--accent);">Privacy Policy</a></p>
   </footer>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CyberMoe Academy | Federal Cybersecurity Training</title>
-  <meta name="description" content="CyberMoe Academy – Over $20 Million in combined salaries created. Expert ISSO, RMF, ACAS, AI, and Cloud Security training for federal careers."/>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #000;
-      --text: #f0fffc;
-      --accent: #00eaff; /* vivid cyan */
-      --accent-green: #00ffaa; /* emerald green */
-      --glow: rgba(0, 234, 255, 0.3); /* softer glow */
-      --glow-green: rgba(0, 255, 170, 0.25);
-      --card: rgba(8, 18, 25, 0.85);
-      --border: #004466;
-    }
-    [data-theme="light"] {
-      --bg: #f5ffff;
-      --text: #001f33;
-      --accent: #0077bb;
-      --accent-green: #005533;
-      --glow: rgba(0, 119, 187, 0.25);
-      --glow-green: rgba(0, 85, 51, 0.2);
-      --card: rgba(255,255,255,0.95);
-      --border: #bbddff;
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:'Inter', Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; scroll-behavior: smooth; }
-    .scanlines { position:fixed; inset:0; pointer-events:none; background:repeating-linear-gradient(transparent 0,transparent 2px,rgba(0,234,255,0.03) 2px,rgba(0,234,255,0.03) 4px); opacity:0.4; z-index:1; } /* subtler */
-    .matrix-bg { position:fixed; top:-60%; left:0; width:100%; height:220%; background:linear-gradient(to bottom,transparent,var(--accent-green)); opacity:0.1; animation:matrix 32s linear infinite; z-index:-1; }
-    @keyframes matrix { 0% { transform:translateY(-60%); } 100% { transform:translateY(0); } }
-    header { position:fixed; top:0; left:0; right:0; padding:1.5rem 6%; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(12px); background:rgba(0,0,0,0.6); z-index:100; border-bottom:1px solid rgba(0,234,255,0.15); }
-    nav { display:flex; gap:2.5rem; font-weight:500; }
-    nav a { color:var(--text); text-decoration:none; transition:all 0.3s; }
-    nav a:hover { color:var(--accent); text-shadow:0 0 10px var(--glow); }
-    .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 8% 0 8%; animation:fadeIn 1s ease-in; }
-    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-    .hero h1 { font-family:'Orbitron',sans-serif; font-size:5rem; font-weight:800; background:linear-gradient(90deg,var(--accent),#00ffea,var(--accent-green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 25px var(--glow); }
-    @media (max-width: 768px) { .hero h1 { font-size:3.5rem; } }
-    .hero .subtitle { font-size:2rem; margin:1rem 0; color:#ccffee; font-weight:500; }
-    .stat { font-size:4.8rem; font-weight:900; color:var(--accent-green); text-shadow:0 0 25px var(--glow-green); margin:1.5rem 0; }
-    .btn { padding:1.2rem 3rem; background:transparent; border:2px solid var(--accent); color:var(--accent); font-weight:600; letter-spacing:1px; transition:all 0.4s; box-shadow:0 0 15px var(--glow); margin:0 0.5rem; }
-    .btn:hover { background:var(--accent); color:#000; box-shadow:0 0 40px var(--glow); transform:scale(1.05); }
-    section { padding:8rem 8%; max-width:1600px; margin:auto; position:relative; }
-    h2 { font-family:'Orbitron',sans-serif; font-size:3.8rem; text-align:center; margin-bottom:3rem; background:linear-gradient(90deg,var(--accent),var(--accent-green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
-    .instructor { text-align:center; margin-bottom:6rem; }
-    .instructor img { width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; }
-    .previews { display:grid; grid-template-columns:repeat(auto-fit,minmax(380px,1fr)); gap:2.5rem; }
-    .preview-card { background:var(--card); border:1px solid var(--border); border-radius:12px; overflow:hidden; transition:all 0.4s; backdrop-filter:blur(8px); }
-    .preview-card:hover { transform:translateY(-8px); box-shadow:0 0 40px var(--glow); }
-    .preview-card video { width:100%; height:auto; loading:lazy; }
-    .pricing { display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:2rem; align-items:stretch; } /* balanced heights */
-    @media (max-width: 1100px) { .pricing { grid-template-columns:1fr; gap:3rem; } .pricing .card:nth-child(2) { order: -1; } }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2.5rem; transition:all 0.4s; display:flex; flex-direction:column; justify-content:space-between; }
-    .card:hover { transform:translateY(-8px); box-shadow:0 0 45px var(--glow); }
-    .card h3 { font-size:1.4rem; margin-bottom:1rem; font-weight:600; }
-    .card .price { font-size:2.8rem; font-weight:800; color:var(--accent); margin:0.5rem 0; }
-    .popular { border-color:var(--accent); border-width:2px; position:relative; transform:scale(1.03); box-shadow:0 0 35px var(--glow); z-index:10; }
-    .popular:hover { transform:scale(1.03) translateY(-8px); }
-    .popular::before { content:"MOST POPULAR"; position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--accent); color:#000; padding:0.5rem 1.4rem; border-radius:50px; font-size:0.95rem; font-weight:700; }
-    ul { list-style:none; margin:2rem 0; font-size:1.1rem; flex-grow:1; }
-    li { margin:0.8rem 0; }
-    li.yes::before { content:"✅ "; color:var(--accent-green); }
-    li.no::before { content:"❌ "; color:#ff6666; }
-    .testimonial { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2.5rem; transition:all 0.4s; backdrop-filter:blur(8px); }
-    .testimonial:hover { transform:translateY(-8px); box-shadow:0 0 40px var(--glow); }
-    .quote { font-style:italic; margin-bottom:1.5rem; font-size:1.2rem; position:relative; }
-    .quote::before { content:"“"; font-size:2rem; color:var(--accent); position:absolute; left:-1rem; top:-0.5rem; }
-    .quote::after { content:"”"; font-size:2rem; color:var(--accent); position:absolute; right:-1rem; bottom:-1rem; }
-    .author { font-weight:600; color:var(--accent); text-align:right; font-size:1.1rem; }
-    .companies { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2rem; }
-    .company-card { background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden; transition:all 0.4s ease; backdrop-filter:blur(8px); text-align:center; padding:2rem 1.5rem; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:200px; }
-    .company-card:hover { transform:translateY(-6px); box-shadow:0 0 30px var(--glow); border-color:var(--accent); }
-    .company-card .logo-wrapper { width:100%; height:100px; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
-    .company-card img { max-width:160px; max-height:70px; width:auto; height:auto; object-fit:contain; filter:grayscale(100%) brightness(1.2); opacity:0.75; transition:all 0.4s ease; loading:lazy; }
-    .company-card:hover img { filter:grayscale(0%) brightness(1); opacity:1; transform:scale(1.03); }
-    .company-card p { font-size:1rem; font-weight:500; color:var(--text); opacity:0.85; margin:0; transition:all 0.3s ease; }
-    .company-card:hover p { color:var(--accent); opacity:1; }
-    .company-card.seal .logo-wrapper { width:85px; height:85px; border-radius:50%; overflow:hidden; background:#fff; padding:0; box-shadow:0 0 12px rgba(0,234,255,0.15); }
-    .company-card.seal img { width:100%; height:100%; max-width:none; max-height:none; object-fit:cover; border-radius:50%; }
-    .company-card.seal:hover .logo-wrapper { box-shadow:0 0 20px var(--glow); }
-    .company-card.accenture img { filter:grayscale(100%) brightness(2) invert(1); opacity:0.85; }
-    .company-card.accenture:hover img { filter:grayscale(0%) brightness(1) invert(0); opacity:1; }
-    [data-theme="light"] .company-card.accenture img { filter:grayscale(100%) brightness(0.75); opacity:0.7; }
-    [data-theme="light"] .company-card.accenture:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
-    [data-theme="light"] .company-card img { filter:grayscale(100%) brightness(0.85); opacity:0.65; }
-    [data-theme="light"] .company-card:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
-    .cert-badge { height:110px; width:auto; border:1px solid var(--accent); border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.3s; }
-    .cert-badge:hover { transform:scale(1.03); box-shadow:0 0 35px var(--glow); }
-    form { max-width:700px; margin:auto; display:grid; gap:1.8rem; }
-    input, textarea { background:rgba(5,25,35,0.65); color:var(--text); border:1px solid #005588; padding:1.3rem; border-radius:8px; font-size:1.1rem; }
-    input:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 20px var(--glow); outline:none; }
-    button { background:var(--accent); color:#000; border:none; padding:1.4rem; font-size:1.25rem; font-weight:600; cursor:pointer; border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.4s; }
-    button:hover { box-shadow:0 0 50px var(--glow); transform:scale(1.03); }
-    footer { text-align:center; padding:4rem 8%; color:#66ddff; border-top:1px solid #004466; font-size:0.95rem; }
-  </style>
-</head>
-<body>
-  <div class="scanlines"></div>
-  <div class="matrix-bg"></div>
-
-  <header>
-    <nav>
-      <a href="#pricing">Programs</a>
-      <a href="#previews">Previews</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#alumni-work">Alumni Employers</a>
-      <a href="#contact">Contact</a>
-      <span onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='light'?'dark':'light')">☀️/🌙</span>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h1>CyberMoe Academy</h1>
-    <div class="subtitle">Your Fast Track to a Federal Cybersecurity Career</div>
-    <div class="stat">$20M+</div>
-    <p style="font-size:1.7rem; max-width:950px; font-weight:400;">Over $20 million in combined salaries created through expert training in ISSO fundamentals, RMF, ACAS, AI Security, and Cloud Security—tailored for cleared professionals and aspiring experts.</p>
-    <div style="margin-top:2.5rem; display:flex; gap:1rem;">
-      <a href="https://muhammad-al-sahlani-s-school.teachable.com/l/pdp/cyber-moe-s-academy" class="btn">Join the Academy</a>
-      <a href="https://www.instagram.com/Cybermoe_" target="_blank" class="btn">Follow @Cybermoe_</a>
-    </div>
-  </section>
-
-  <section class="instructor">
-    <img src="cyber-moe.jpg" alt="Cyber Moe – Founder & Instructor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem;">
-    <h2>Meet Your Instructor</h2>
-    <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; margin:1.5rem 0;">
-      <img src="cisa-badge.png" alt="CISA Certified" class="cert-badge">
-      <img src="cism-badge.png" alt="CISM Certified" class="cert-badge">
-      <img src="cissp-badge.png" alt="CISSP Certified" class="cert-badge">
-      <img src="az500-badge.jpg" alt="AZ-500 Certified" class="cert-badge">
-    </div>
-    <div style="display:flex; justify-content:center; margin:1.5rem 0;">
-      <div style="padding:1rem 2.5rem; border:2px solid var(--accent-green); border-radius:12px; background:rgba(0,255,170,0.15); box-shadow:0 0 25px var(--glow-green); text-align:center; transition:all 0.3s;">
-        <span style="font-size:1.4rem; font-weight:700; color:var(--accent-green);">🎓 M.S. in Cybersecurity and Information Assurance</span>
-      </div>
-    </div>
-    <p style="font-size:1.3rem; max-width:800px; margin:1.5rem auto 2rem; font-weight:400;">Cyber Moe – Influencer, Educator, and Career Accelerator. With a proven track record of helping students secure over $20M in combined salaries, I guide professionals into high-impact federal cybersecurity roles.</p>
-    <div style="max-width:800px; margin:auto; text-align:left;">
-      <h3 style="font-size:1.8rem; margin-bottom:1.5rem; color:var(--accent); text-align:center;">Professional Experience & Highlights</h3>
-      <ul style="list-style-type:none; font-size:1.2rem; line-height:1.8; padding-left:1rem;">
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Over 10 years in federal cybersecurity, working across multiple agencies on cyber operations, policy development, AI integration, and compliance.</li>
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Teaching cybersecurity for over 5 years, with former roles including Cybersecurity Consultant for government agencies and Lead Instructor for clearance-holding professionals.</li>
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Mentored 100+ students into six-figure federal jobs, focusing on career placement and salary negotiation.</li>
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Active contributor to cybersecurity communities, including speaking engagements and content creation on platforms like Instagram (@Cybermoe_).</li>
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Passionate about making complex topics accessible, drawing from real-world federal scenarios to prepare students for immediate impact.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section id="previews">
-    <h2>Sneak Peek: Core Course Modules</h2>
-    <div style="max-width:800px; margin:auto;">
-      <div class="preview-card">
-        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
-          <video id="preview-video" style="position:absolute; top:0; left:0; width:100%; height:100%;" controls preload="metadata">
-            <source src="rmf-categorization.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p style="padding:1rem; text-align:center; font-weight:500;">RMF Categorization Module</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="pricing">
-    <h2>Choose Your Path</h2>
-    <div class="pricing">
-      <div class="card">
-        <h3>Self-Paced Training</h3>
-        <div class="price">$1,497</div>
-        <p>one-time payment</p>
-        <ul>
-          <li class="yes">10+ module video curriculum</li>
-          <li class="yes">RMF, ACAS, AI Security, Cloud</li>
-          <li class="yes">Downloadable templates & checklists</li>
-          <li class="yes">Lifetime course updates</li>
-          <li class="no">1-on-1 resume reviews</li>
-          <li class="no">Job search support</li>
-          <li class="no">Mock interviews</li>
-        </ul>
-        <p><strong>Best for</strong> independent learners with IT experience transitioning to federal roles</p>
-        <div style="text-align:center; margin-top:2rem;"><a href="https://muhammad-al-sahlani-s-school.teachable.com/l/pdp/cyber-moe-s-academy" class="btn">Enroll Now</a></div>
-      </div>
-
-      <div class="card popular">
-        <h3>Mentorship Training + Career Placement</h3>
-        <div class="price">$3,997</div>
-        <p>one-time payment</p>
-        <ul>
-          <li class="yes">Everything in Self-Paced, plus:</li>
-          <li class="yes">1-on-1 resume reviews</li>
-          <li class="yes">LinkedIn profile optimization</li>
-          <li class="yes">ClearanceJobs application strategies</li>
-          <li class="yes">Mock clearance interview prep</li>
-          <li class="yes">Job search accountability (60 days)</li>
-          <li class="yes">Direct messaging access (60 days)</li>
-          <li class="yes">Salary negotiation coaching</li>
-          <li class="yes">Networking introductions</li>
-        </ul>
-        <p><strong>Best for</strong> career changers committed to securing federal positions</p>
-        <div style="text-align:center; margin-top:2rem;"><a href="https://muhammad-al-sahlani-s-school.teachable.com/l/pdp/cyber-moe-s-academy" class="btn">Get Mentored</a></div>
-      </div>
-
-      <div class="card">
-        <h3>Corporate Team Training</h3>
-        <div class="price">Custom</div>
-        <p>contact for quote</p>
-        <ul>
-          <li class="yes">Customized curriculum for your agency or organization</li>
-          <li class="yes">On-site or virtual delivery</li>
-          <li class="yes">Training for 5-50+ employees</li>
-          <li class="yes">Integration with your tools & processes</li>
-          <li class="yes">Ongoing support package</li>
-          <li class="yes">Certificates of completion</li>
-          <li class="yes">Metrics & reporting</li>
-          <li class="yes">Flexible scheduling</li>
-        </ul>
-        <p><strong>Best for</strong> teams enhancing federal compliance and skills</p>
-        <div style="text-align:center; margin-top:2rem;"><a href="#contact" class="btn">Request Quote</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="testimonials">
-    <h2>Success Stories</h2>
-    <div class="testimonials">
-      <div class="testimonial">
-        <img src="mark-nap.png" alt="Mark Nap" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
-        <div class="quote">"I came in with zero cybersecurity experience. After completing CyberMoe's training and mentorship program, I landed an Information Systems Security Engineer role in the federal space. If you're serious about breaking into federal cybersecurity, this course is the real deal."</div>
-        <div class="author">— Mark Nap, B.S. Penn State University</div>
-      </div>
-      <div class="testimonial">
-        <img src="zanein-prater.png" alt="Zanein Prater" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
-        <div class="quote">"As a veteran, I understood the importance of cybersecurity but needed the right guidance to break into the field. CyberMoe's expertise opened multiple doors on my cyber journey. Since completing the course, I've doubled my salary and gained the skills to thrive in this industry."</div>
-        <div class="author">— Zanein Prater, U.S. Air Force Veteran</div>
-      </div>
-      <div class="testimonial">
-        <img src="marcus-gross.jpg" alt="Marcus S. Gross" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:2px solid var(--accent); display: block; margin: 0 auto 1rem;" loading="lazy">
-        <div class="quote">"As a U.S. combat veteran, I was leaving the military without a clear plan. CyberMoe introduced me to cybersecurity and taught me everything I needed to succeed in information security. Within months, I doubled my salary. I highly recommend CyberMoe Academy to anyone looking to make a career change."</div>
-        <div class="author">— Marcus S. Gross, U.S. Army Veteran</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="alumni-work">
-    <h2>Alumni Success: Trusted Employers</h2>
-    <div class="companies">
-      <div class="company-card seal">
-        <div class="logo-wrapper">
-          <img src="https://www.dhs.gov/sites/default/files/styles/large_card/public/2023-02/DHS_S_RGB_Gray_20Year_card.jpg.webp?itok=6M9BF5at" alt="Department of Homeland Security (DHS) Logo">
-        </div>
-        <p>Department of Homeland Security</p>
-      </div>
-      <div class="company-card seal">
-        <div class="logo-wrapper">
-          <img src="https://logos-world.net/wp-content/uploads/2025/02/United-States-Department-of-Defense-the-Seal-Logo.png" alt="Department of Defense (DOD) Logo">
-        </div>
-        <p>Department of Defense</p>
-      </div>
-      <div class="company-card seal">
-        <div class="logo-wrapper">
-          <img src="https://oceanservice.noaa.gov/facts/noaa-emblem-rgb-2022.png" alt="National Oceanic and Atmospheric Administration (NOAA) Logo">
-        </div>
-        <p>NOAA</p>
-      </div>
-      <div class="company-card">
-        <div class="logo-wrapper">
-          <img src="https://download.logo.wine/logo/Raytheon_Technologies/Raytheon_Technologies-Logo.wine.png" alt="Raytheon Logo">
-        </div>
-        <p>Raytheon</p>
-      </div>
-      <div class="company-card">
-        <div class="logo-wrapper">
-          <img src="https://download.logo.wine/logo/BAE_Systems/BAE_Systems-Logo.wine.png" alt="BAE Systems Logo">
-        </div>
-        <p>BAE Systems</p>
-      </div>
-      <div class="company-card accenture">
-        <div class="logo-wrapper">
-          <img src="https://assets.stickpng.com/images/6102dbf43de48b00044eb5af.png" alt="Accenture Logo">
-        </div>
-        <p>Accenture</p>
-      </div>
-      <div class="company-card seal">
-        <div class="logo-wrapper">
-          <img src="https://www.energy.gov/sites/default/files/2025-03/DOE%20Full%20Seal%20on%20Blue%20background%20-%201312%20x%20825_1.png" alt="Department of Energy (DOE) Logo">
-        </div>
-        <p>Department of Energy</p>
-      </div>
-      <div class="company-card">
-        <div class="logo-wrapper">
-          <img src="https://download.logo.wine/logo/Boeing/Boeing-Logo.wine.png" alt="Boeing Logo">
-        </div>
-        <p>Boeing</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" rows="6" placeholder="Share your goals, clearances, or questions—we're here to help." required></textarea>
-      <button type="submit">Send Message</button>
-    </form>
-  </section>
-
-  <footer>
-    <p>CyberMoe Academy © 2026 • <a href="https://www.instagram.com/Cybermoe_" target="_blank" style="color:var(--accent);">Follow @Cybermoe_ on Instagram</a> • <a href="/privacy" style="color:var(--accent);">Privacy Policy</a></p>
-  </footer>
-</body>
->>>>>>> 2be8e92fb6524a542fe5b44ead2e60baecfac2e4
 </html>
