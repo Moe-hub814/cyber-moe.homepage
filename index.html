@@ -35,9 +35,33 @@
     .matrix-bg { position:fixed; top:-60%; left:0; width:100%; height:220%; background:linear-gradient(to bottom,transparent,var(--accent-green)); opacity:0.1; animation:matrix 32s linear infinite; z-index:-1; }
     @keyframes matrix { 0% { transform:translateY(-60%); } 100% { transform:translateY(0); } }
     header { position:fixed; top:0; left:0; right:0; padding:1.5rem 6%; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(12px); background:rgba(0,0,0,0.6); z-index:100; border-bottom:1px solid rgba(0,234,255,0.15); }
-    nav { display:flex; gap:2.5rem; font-weight:500; }
-    nav a { color:var(--text); text-decoration:none; transition:all 0.3s; }
-    nav a:hover { color:var(--accent); text-shadow:0 0 10px var(--glow); }
+    nav { display:flex; gap:2.5rem; font-weight:500; align-items:center; width:100%; justify-content:center; }
+    nav a, nav .theme-toggle { color:var(--text); text-decoration:none; transition:all 0.3s; cursor:pointer; white-space:nowrap; }
+    nav a:hover, nav .theme-toggle:hover { color:var(--accent); text-shadow:0 0 10px var(--glow); }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:10px; z-index:110; position:absolute; right:5%; }
+    .hamburger span { width:28px; height:3px; background:var(--accent); border-radius:3px; transition:all 0.3s; }
+    .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(6px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity:0; }
+    .hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(6px, -6px); }
+    .nav-links { display:flex; gap:2.5rem; align-items:center; }
+    .nav-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:99; }
+    .nav-overlay.active { display:block; }
+    @media (max-width: 900px) {
+      header { justify-content:space-between; padding:1rem 5%; }
+      .hamburger { display:flex; position:relative; right:auto; }
+      .site-title { display:block !important; }
+      .nav-links { 
+        position:fixed; top:0; right:-100%; width:80%; max-width:320px; height:100vh; 
+        flex-direction:column; justify-content:center; align-items:center; gap:2rem;
+        background:rgba(0,0,0,0.97); backdrop-filter:blur(20px); 
+        transition:right 0.4s ease; padding:2rem; border-left:1px solid var(--accent);
+        z-index:105;
+      }
+      .nav-links.active { right:0; }
+      .nav-links a, .nav-links .theme-toggle { font-size:1.25rem; padding:1rem 1.5rem; width:100%; text-align:center; border-radius:8px; display:block; }
+      .nav-links a:hover, .nav-links .theme-toggle:hover { background:rgba(0,234,255,0.15); }
+      .site-title { font-family:'Orbitron',sans-serif; font-size:1.1rem; color:var(--accent); font-weight:600; }
+    }
     .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 8% 0 8%; animation:fadeIn 1s ease-in; }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     .hero h1 { font-family:'Orbitron',sans-serif; font-size:5rem; font-weight:800; background:linear-gradient(90deg,var(--accent),#00ffea,var(--accent-green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 25px var(--glow); }
@@ -86,7 +110,7 @@
     [data-theme="light"] .company-card:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
     .cert-badge { height:110px; width:auto; border:1px solid var(--accent); border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.3s; }
     .cert-badge:hover { transform:scale(1.03); box-shadow:0 0 35px var(--glow); }
-    .cism-badge, .cisa-badge { height:120px; } /* Slightly zoomed for CISM and CISA */
+    .cism-badge, .cisa-badge { height:132px; } /* 10% larger than other badges */
     form { max-width:700px; margin:auto; display:grid; gap:1.8rem; }
     input, textarea { background:rgba(5,25,35,0.65); color:var(--text); border:1px solid #005588; padding:1.3rem; border-radius:8px; font-size:1.1rem; }
     input:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 20px var(--glow); outline:none; }
@@ -108,7 +132,7 @@
       section { padding:4rem 4%; }
       .instructor img { width:200px; height:200px; }
       .cert-badge { height:80px; }
-      .cism-badge, .cisa-badge { height:90px; } /* Adjusted zoom for mobile */
+      .cism-badge, .cisa-badge { height:99px; } /* 10% larger on mobile */
       .pricing { grid-template-columns:1fr; }
       .testimonials { grid-template-columns:1fr; }
       .companies { grid-template-columns:1fr; }
@@ -122,7 +146,7 @@
       h2 { font-size:2rem; }
       .instructor img { width:150px; height:150px; }
       .cert-badge { height:60px; }
-      .cism-badge, .cisa-badge { height:70px; }
+      .cism-badge, .cisa-badge { height:77px; } /* 10% larger on small mobile */
     }
   </style>
 </head>
@@ -130,14 +154,23 @@
   <div class="scanlines"></div>
   <div class="matrix-bg"></div>
 
+  <div class="nav-overlay" onclick="closeNav()"></div>
   <header>
     <nav>
-      <a href="#pricing">Programs</a>
-      <a href="#faq">FAQ</a>
-      <a href="#testimonials">Testimonials</a>
-      <a href="#alumni-work">Alumni Employers</a>
-      <a href="#contact">Contact</a>
-      <span onclick="document.documentElement.setAttribute('data-theme', document.documentElement.getAttribute('data-theme')==='light'?'dark':'light')">☀️/🌙</span>
+      <span class="site-title" style="display:none;">CyberMoe</span>
+      <div class="hamburger" onclick="toggleNav()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#pricing" onclick="closeNav()">Programs</a>
+        <a href="#faq" onclick="closeNav()">FAQ</a>
+        <a href="#testimonials" onclick="closeNav()">Testimonials</a>
+        <a href="#alumni-work" onclick="closeNav()">Alumni Employers</a>
+        <a href="#contact" onclick="closeNav()">Contact</a>
+        <span class="theme-toggle" onclick="toggleTheme()">☀️/🌙</span>
+      </div>
     </nav>
   </header>
 
@@ -350,5 +383,32 @@
   <footer>
     <p>CyberMoe Academy © 2026 • <a href="https://www.instagram.com/Cybermoe_" target="_blank" style="color:var(--accent);">Follow @Cybermoe_ on Instagram</a> • <a href="/privacy" style="color:var(--accent);">Privacy Policy</a></p>
   </footer>
+
+  <script>
+    function toggleNav() {
+      document.querySelector('.hamburger').classList.toggle('active');
+      document.querySelector('.nav-links').classList.toggle('active');
+      document.querySelector('.nav-overlay').classList.toggle('active');
+      document.body.style.overflow = document.querySelector('.nav-links').classList.contains('active') ? 'hidden' : '';
+    }
+    function closeNav() {
+      document.querySelector('.hamburger').classList.remove('active');
+      document.querySelector('.nav-links').classList.remove('active');
+      document.querySelector('.nav-overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function toggleTheme() {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
+    }
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeNav();
+    });
+    // Close menu when clicking outside on mobile
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 900) closeNav();
+    });
+  </script>
 </body>
 </html>
