@@ -86,6 +86,7 @@
     [data-theme="light"] .company-card:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
     .cert-badge { height:110px; width:auto; border:1px solid var(--accent); border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.3s; }
     .cert-badge:hover { transform:scale(1.03); box-shadow:0 0 35px var(--glow); }
+    .cism-badge, .cisa-badge { height:120px; } /* Slightly zoomed for CISM and CISA */
     form { max-width:700px; margin:auto; display:grid; gap:1.8rem; }
     input, textarea { background:rgba(5,25,35,0.65); color:var(--text); border:1px solid #005588; padding:1.3rem; border-radius:8px; font-size:1.1rem; }
     input:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 20px var(--glow); outline:none; }
@@ -107,6 +108,7 @@
       section { padding:4rem 4%; }
       .instructor img { width:200px; height:200px; }
       .cert-badge { height:80px; }
+      .cism-badge, .cisa-badge { height:90px; } /* Adjusted zoom for mobile */
       .pricing { grid-template-columns:1fr; }
       .testimonials { grid-template-columns:1fr; }
       .companies { grid-template-columns:1fr; }
@@ -120,6 +122,7 @@
       h2 { font-size:2rem; }
       .instructor img { width:150px; height:150px; }
       .cert-badge { height:60px; }
+      .cism-badge, .cisa-badge { height:70px; }
     }
   </style>
 </head>
@@ -153,8 +156,8 @@
     <img src="cyber-moe.jpg" alt="Cyber Moe – Founder & Instructor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; loading:lazy; ">
     <h2>Meet Your Instructor</h2>
     <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; margin:1.5rem 0;">
-      <img src="cisa-badge.png" alt="CISA Certified" class="cert-badge">
-      <img src="cism-badge.png" alt="CISM Certified" class="cert-badge">
+      <img src="cisa-badge.png" alt="CISA Certified" class="cert-badge cisa-badge">
+      <img src="cism-badge.png" alt="CISM Certified" class="cert-badge cism-badge">
       <img src="cissp-badge.png" alt="CISSP Certified" class="cert-badge">
       <img src="az500-badge.jpg" alt="AZ-500 Certified" class="cert-badge">
     </div>
