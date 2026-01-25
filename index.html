@@ -41,7 +41,6 @@
     .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 8% 0 8%; animation:fadeIn 1s ease-in; }
     @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
     .hero h1 { font-family:'Orbitron',sans-serif; font-size:5rem; font-weight:800; background:linear-gradient(90deg,var(--accent),#00ffea,var(--accent-green)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; text-shadow:0 0 25px var(--glow); }
-    @media (max-width: 768px) { .hero h1 { font-size:3.5rem; } }
     .hero .subtitle { font-size:2rem; margin:1rem 0; color:#ccffee; font-weight:500; }
     .stat { font-size:4.8rem; font-weight:900; color:var(--accent-green); text-shadow:0 0 25px var(--glow-green); margin:1.5rem 0; }
     .btn { padding:1.2rem 3rem; background:transparent; border:2px solid var(--accent); color:var(--accent); font-weight:600; letter-spacing:1px; transition:all 0.4s; box-shadow:0 0 15px var(--glow); margin:0 0.5rem; }
@@ -51,7 +50,6 @@
     .instructor { text-align:center; margin-bottom:6rem; }
     .instructor img { width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; loading:lazy; }
     .pricing { display:grid; grid-template-columns:1fr 1.1fr 1fr; gap:2rem; align-items:stretch; } /* balanced heights */
-    @media (max-width: 1100px) { .pricing { grid-template-columns:1fr; gap:3rem; } .pricing .card:nth-child(2) { order: -1; } }
     .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:2.5rem; transition:all 0.4s; display:flex; flex-direction:column; justify-content:space-between; }
     .card:hover { transform:translateY(-8px); box-shadow:0 0 45px var(--glow); }
     .card h3 { font-size:1.4rem; margin-bottom:1rem; font-weight:600; }
@@ -89,15 +87,40 @@
     .cert-badge { height:110px; width:auto; border:1px solid var(--accent); border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.3s; }
     .cert-badge:hover { transform:scale(1.03); box-shadow:0 0 35px var(--glow); }
     form { max-width:700px; margin:auto; display:grid; gap:1.8rem; }
-    input, textarea { background:rgba(5,25,35,0.65); color:var(--text); border:1px solid #005588; padding:1.3rem; border-radius:8px; font-size:1.1rem; width:100%; }
+    input, textarea { background:rgba(5,25,35,0.65); color:var(--text); border:1px solid #005588; padding:1.3rem; border-radius:8px; font-size:1.1rem; }
     input:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 20px var(--glow); outline:none; }
-    button { background:var(--accent); color:#000; border:none; padding:1.4rem; font-size:1.25rem; font-weight:600; cursor:pointer; border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.4s; width:100%; }
+    button { background:var(--accent); color:#000; border:none; padding:1.4rem; font-size:1.25rem; font-weight:600; cursor:pointer; border-radius:8px; box-shadow:0 0 20px var(--glow); transition:all 0.4s; }
     button:hover { box-shadow:0 0 50px var(--glow); transform:scale(1.03); }
     footer { text-align:center; padding:4rem 8%; color:#66ddff; border-top:1px solid #004466; font-size:0.95rem; }
     details { margin-bottom:1.5rem; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; transition:all 0.3s; }
     details:hover { box-shadow:0 0 20px var(--glow); }
     summary { font-weight:600; cursor:pointer; color:var(--accent); }
-    label { display:block; margin-bottom:0.5rem; font-size:1rem; color:var(--text); }
+    /* Mobile optimizations */
+    @media (max-width: 768px) {
+      .hero h1 { font-size:3.5rem; }
+      .hero .subtitle { font-size:1.5rem; }
+      .stat { font-size:3.5rem; }
+      .hero p { font-size:1.4rem; padding:0 1rem; }
+      .hero div { flex-direction:column; gap:1rem; }
+      .btn { width:100%; margin:0; }
+      h2 { font-size:2.5rem; }
+      section { padding:4rem 4%; }
+      .instructor img { width:200px; height:200px; }
+      .cert-badge { height:80px; }
+      .pricing { grid-template-columns:1fr; }
+      .testimonials { grid-template-columns:1fr; }
+      .companies { grid-template-columns:1fr; }
+      form { gap:1rem; }
+      input, textarea { padding:1rem; font-size:1rem; }
+      button { padding:1rem; font-size:1rem; }
+      footer { padding:2rem 4%; font-size:0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size:2.8rem; }
+      h2 { font-size:2rem; }
+      .instructor img { width:150px; height:150px; }
+      .cert-badge { height:60px; }
+    }
   </style>
 </head>
 <body>
