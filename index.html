@@ -121,20 +121,53 @@
     details { margin-bottom:1.5rem; background:var(--card); border:1px solid var(--border); border-radius:8px; padding:1rem; transition:all 0.3s; }
     details:hover { box-shadow:0 0 20px var(--glow); }
     summary { font-weight:600; cursor:pointer; color:var(--accent); }
+    /* Certification Ticker */
+    .ticker-wrapper {
+      width:100%; overflow:hidden; padding:1.5rem 0; background:rgba(0,20,30,0.5); margin:2rem 0;
+    }
+    .ticker-track {
+      display:flex; width:max-content; animation:ticker-scroll 35s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state:paused; }
+    @keyframes ticker-scroll {
+      0% { transform:translateX(0); }
+      100% { transform:translateX(-50%); }
+    }
+    .ticker-item {
+      display:flex; align-items:center; gap:1rem; padding:0.8rem 1.5rem; margin:0 0.75rem;
+      background:rgba(0,234,255,0.08); border:1px solid rgba(0,234,255,0.3);
+      border-radius:50px; white-space:nowrap; transition:all 0.3s;
+    }
+    .ticker-item:hover {
+      background:rgba(0,234,255,0.15); border-color:var(--accent); box-shadow:0 0 20px var(--glow);
+    }
+    .ticker-item .cert-icon {
+      width:35px; height:35px; background:linear-gradient(135deg, var(--accent), var(--accent-green));
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-size:0.6rem; font-weight:800; color:#000;
+    }
+    .ticker-item .cert-name {
+      font-family:'Orbitron', sans-serif; font-size:0.95rem; font-weight:600; color:var(--text);
+    }
+    .ticker-item .cert-full {
+      font-size:0.7rem; color:var(--accent); opacity:0.8;
+    }
     /* Mobile optimizations */
     @media (max-width: 768px) {
       .hero h1 { font-size:3.5rem; }
       .hero .subtitle { font-size:1.5rem; }
       .stat { font-size:3.5rem; }
-      .hero p { font-size:1.4rem; padding:0 1rem; }
+      .hero p { font-size:1.2rem; padding:0 1rem; }
       .hero div { flex-direction:column; gap:1rem; }
+      .hero > div:nth-of-type(1) { flex-direction:row; flex-wrap:wrap; gap:1.5rem; }
       .btn { width:100%; margin:0; }
       h2 { font-size:2.5rem; }
       section { padding:4rem 4%; }
       .instructor img { width:200px; height:200px; }
-      .cert-badge { height:85px; width:85px; }
-      .cism-badge, .cisa-badge { height:100px; width:100px; }
-      .cissp-badge { height:95px; width:95px; }
+      .ticker-item { padding:0.6rem 1rem; margin:0 0.5rem; }
+      .ticker-item .cert-icon { width:30px; height:30px; font-size:0.5rem; }
+      .ticker-item .cert-name { font-size:0.85rem; }
+      .ticker-item .cert-full { font-size:0.6rem; }
       .pricing { grid-template-columns:1fr; }
       .testimonials { grid-template-columns:1fr; }
       .companies { grid-template-columns:1fr; }
@@ -147,9 +180,8 @@
       .hero h1 { font-size:2.8rem; }
       h2 { font-size:2rem; }
       .instructor img { width:150px; height:150px; }
-      .cert-badge { height:65px; width:65px; }
-      .cism-badge, .cisa-badge { height:75px; width:75px; }
-      .cissp-badge { height:70px; width:70px; }
+      .ticker-item .cert-full { display:none; }
+      .ticker-item .cert-name { font-size:0.9rem; }
     }
   </style>
 </head>
@@ -180,8 +212,21 @@
   <section class="hero">
     <h1>CyberMoe Academy</h1>
     <div class="subtitle">Your Fast Track to a Federal Cybersecurity Career</div>
-    <div class="stat">$20M+</div>
-    <p style="font-size:1.7rem; max-width:950px; font-weight:400;">Over $20 million in combined salaries created through expert training in ISSO fundamentals, RMF, ACAS, AI Security, and Cloud Security—tailored for cleared professionals and aspiring experts.</p>
+    <p style="font-size:1.5rem; max-width:900px; font-weight:400; margin:2rem 0; line-height:1.8;">Learn the exact skills federal agencies are hiring for — <strong style="color:var(--accent);">RMF, ACAS, vulnerability management, cloud security, and AI integration</strong>. Whether you're transitioning from IT, the military, or starting fresh, this program gives you the hands-on training and career support to land your first (or next) six-figure federal cybersecurity role.</p>
+    <div style="display:flex; gap:2rem; flex-wrap:wrap; justify-content:center; margin:1.5rem 0;">
+      <div style="text-align:center;">
+        <div style="font-size:3rem; font-weight:800; color:var(--accent-green); text-shadow:0 0 20px var(--glow-green);">$20M+</div>
+        <div style="font-size:1rem; color:var(--text); opacity:0.8;">Combined Student Salaries</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:3rem; font-weight:800; color:var(--accent); text-shadow:0 0 20px var(--glow);">100+</div>
+        <div style="font-size:1rem; color:var(--text); opacity:0.8;">Students Placed</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:3rem; font-weight:800; color:var(--accent-green); text-shadow:0 0 20px var(--glow-green);">6 Weeks</div>
+        <div style="font-size:1rem; color:var(--text); opacity:0.8;">To Interview-Ready</div>
+      </div>
+    </div>
     <div style="margin-top:2.5rem; display:flex; gap:1rem;">
       <a href="https://cybermoeacademy.teachable.com/purchase?product_id=6611093" class="btn">Join the Academy</a>
       <a href="https://www.instagram.com/Cybermoe_" target="_blank" class="btn">Follow @Cybermoe_</a>
@@ -191,12 +236,112 @@
   <section class="instructor">
     <img src="cyber-moe.jpg" alt="Cyber Moe – Founder & Instructor" style="width:280px; height:280px; border-radius:50%; object-fit:cover; border:4px solid var(--accent); box-shadow:0 0 30px var(--glow); margin-bottom:1.5rem; loading:lazy; ">
     <h2>Meet Your Instructor</h2>
-    <div style="display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; margin:1.5rem 0;">
-      <img src="cisa-badge.png" alt="CISA Certified" class="cert-badge cisa-badge">
-      <img src="cism-badge.png" alt="CISM Certified" class="cert-badge cism-badge">
-      <img src="cissp-badge.png" alt="CISSP Certified" class="cert-badge cissp-badge">
-      <img src="az500-badge.jpg" alt="AZ-500 Certified" class="cert-badge">
+    
+    <!-- Certification Ticker -->
+    <div class="ticker-wrapper">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          <div class="cert-icon">ISC²</div>
+          <div>
+            <div class="cert-name">CISSP</div>
+            <div class="cert-full">Certified Information Systems Security Professional</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">ISACA</div>
+          <div>
+            <div class="cert-name">CISM</div>
+            <div class="cert-full">Certified Information Security Manager</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">ISACA</div>
+          <div>
+            <div class="cert-name">CISA</div>
+            <div class="cert-full">Certified Information Systems Auditor</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">MS</div>
+          <div>
+            <div class="cert-name">AZ-500</div>
+            <div class="cert-full">Microsoft Azure Security Engineer</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">AWS</div>
+          <div>
+            <div class="cert-name">CCP</div>
+            <div class="cert-full">AWS Certified Cloud Practitioner</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">C+</div>
+          <div>
+            <div class="cert-name">CySA+</div>
+            <div class="cert-full">CompTIA Cybersecurity Analyst</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">C+</div>
+          <div>
+            <div class="cert-name">PenTest+</div>
+            <div class="cert-full">CompTIA Penetration Tester</div>
+          </div>
+        </div>
+        <!-- Duplicate for seamless loop -->
+        <div class="ticker-item">
+          <div class="cert-icon">ISC²</div>
+          <div>
+            <div class="cert-name">CISSP</div>
+            <div class="cert-full">Certified Information Systems Security Professional</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">ISACA</div>
+          <div>
+            <div class="cert-name">CISM</div>
+            <div class="cert-full">Certified Information Security Manager</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">ISACA</div>
+          <div>
+            <div class="cert-name">CISA</div>
+            <div class="cert-full">Certified Information Systems Auditor</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">MS</div>
+          <div>
+            <div class="cert-name">AZ-500</div>
+            <div class="cert-full">Microsoft Azure Security Engineer</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">AWS</div>
+          <div>
+            <div class="cert-name">CCP</div>
+            <div class="cert-full">AWS Certified Cloud Practitioner</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">C+</div>
+          <div>
+            <div class="cert-name">CySA+</div>
+            <div class="cert-full">CompTIA Cybersecurity Analyst</div>
+          </div>
+        </div>
+        <div class="ticker-item">
+          <div class="cert-icon">C+</div>
+          <div>
+            <div class="cert-name">PenTest+</div>
+            <div class="cert-full">CompTIA Penetration Tester</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div style="display:flex; justify-content:center; margin:1.5rem 0;">
       <div style="padding:1rem 2.5rem; border:2px solid var(--accent-green); border-radius:12px; background:rgba(0,255,170,0.15); box-shadow:0 0 25px var(--glow-green); text-align:center; transition:all 0.3s;">
         <span style="font-size:1.4rem; font-weight:700; color:var(--accent-green);">🎓 M.S. in Cybersecurity and Information Assurance</span>
@@ -206,11 +351,12 @@
     <div style="max-width:800px; margin:auto; text-align:left;">
       <h3 style="font-size:1.8rem; margin-bottom:1.5rem; color:var(--accent); text-align:center;">Professional Experience & Highlights</h3>
       <ul style="list-style-type:none; font-size:1.2rem; line-height:1.8; padding-left:1rem;">
+        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ <strong>Master's Degree in Cybersecurity and Information Assurance</strong> — Advanced expertise in security architecture, risk management, and information assurance frameworks.</li>
+        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ <strong>7+ Industry Certifications</strong> — CISSP, CISM, CISA, AZ-500, AWS CCP, CompTIA CySA+, and PenTest+ demonstrating expertise across security domains.</li>
         <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Over 10 years in federal cybersecurity, working across multiple agencies on cyber operations, policy development, AI integration, and compliance.</li>
         <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Teaching cybersecurity for over 5 years, with former roles including Cybersecurity Consultant for government agencies and Lead Instructor for clearance-holding professionals.</li>
         <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Mentored 100+ students into six-figure federal jobs, focusing on career placement and salary negotiation.</li>
         <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Active contributor to cybersecurity communities, including speaking engagements and content creation on platforms like Instagram (@Cybermoe_).</li>
-        <li style="margin-bottom:1rem; transition:all 0.3s;" onmouseover="this.style.color='var(--accent)';" onmouseout="this.style.color='var(--text)';">✅ Passionate about making complex topics accessible, drawing from real-world federal scenarios to prepare students for immediate impact.</li>
       </ul>
     </div>
   </section>
