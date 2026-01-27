@@ -19,16 +19,6 @@
       --card: rgba(8, 18, 25, 0.85);
       --border: #004466;
     }
-    [data-theme="light"] {
-      --bg: #f5ffff;
-      --text: #001f33;
-      --accent: #0077bb;
-      --accent-green: #005533;
-      --glow: rgba(0, 119, 187, 0.25);
-      --glow-green: rgba(0, 85, 51, 0.2);
-      --card: rgba(255,255,255,0.95);
-      --border: #bbddff;
-    }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { font-family:'Inter', Arial, sans-serif; background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; scroll-behavior: smooth; }
     .scanlines { position:fixed; inset:0; pointer-events:none; background:repeating-linear-gradient(transparent 0,transparent 2px,rgba(0,234,255,0.03) 2px,rgba(0,234,255,0.03) 4px); opacity:0.4; z-index:1; } /* subtler */
@@ -36,8 +26,8 @@
     @keyframes matrix { 0% { transform:translateY(-60%); } 100% { transform:translateY(0); } }
     header { position:fixed; top:0; left:0; right:0; padding:1.5rem 6%; display:flex; justify-content:center; align-items:center; backdrop-filter:blur(12px); background:rgba(0,0,0,0.6); z-index:100; border-bottom:1px solid rgba(0,234,255,0.15); }
     nav { display:flex; gap:2.5rem; font-weight:500; align-items:center; width:100%; justify-content:center; }
-    nav a, nav .theme-toggle { color:var(--text); text-decoration:none; transition:all 0.3s; cursor:pointer; white-space:nowrap; }
-    nav a:hover, nav .theme-toggle:hover { color:var(--accent); text-shadow:0 0 10px var(--glow); }
+    nav a { color:var(--text); text-decoration:none; transition:all 0.3s; cursor:pointer; white-space:nowrap; }
+    nav a:hover { color:var(--accent); text-shadow:0 0 10px var(--glow); }
     .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:10px; z-index:110; position:absolute; right:5%; }
     .hamburger span { width:28px; height:3px; background:var(--accent); border-radius:3px; transition:all 0.3s; }
     .hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(6px, 6px); }
@@ -58,8 +48,8 @@
         z-index:105;
       }
       .nav-links.active { right:0; }
-      .nav-links a, .nav-links .theme-toggle { font-size:1.25rem; padding:1rem 1.5rem; width:100%; text-align:center; border-radius:8px; display:block; }
-      .nav-links a:hover, .nav-links .theme-toggle:hover { background:rgba(0,234,255,0.15); }
+      .nav-links a { font-size:1.25rem; padding:1rem 1.5rem; width:100%; text-align:center; border-radius:8px; display:block; }
+      .nav-links a:hover { background:rgba(0,234,255,0.15); }
       .site-title { font-family:'Orbitron',sans-serif; font-size:1.1rem; color:var(--accent); font-weight:600; }
     }
     .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:6rem 8% 0 8%; animation:fadeIn 1s ease-in; }
@@ -104,10 +94,6 @@
     .company-card.seal:hover .logo-wrapper { box-shadow:0 0 20px var(--glow); }
     .company-card.accenture img { filter:grayscale(100%) brightness(2) invert(1); opacity:0.85; }
     .company-card.accenture:hover img { filter:grayscale(0%) brightness(1) invert(0); opacity:1; }
-    [data-theme="light"] .company-card.accenture img { filter:grayscale(100%) brightness(0.75); opacity:0.7; }
-    [data-theme="light"] .company-card.accenture:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
-    [data-theme="light"] .company-card img { filter:grayscale(100%) brightness(0.85); opacity:0.65; }
-    [data-theme="light"] .company-card:hover img { filter:grayscale(0%) brightness(1); opacity:1; }
     .cert-badge { height:110px; width:110px; border:1px solid var(--accent); border-radius:50%; box-shadow:0 0 20px var(--glow); transition:all 0.3s; object-fit:cover; }
     .cert-badge:hover { transform:scale(1.05); box-shadow:0 0 35px var(--glow); }
     .cism-badge, .cisa-badge { height:130px; width:130px; } /* Slightly larger for CISM and CISA */
@@ -204,7 +190,6 @@
         <a href="#testimonials" onclick="closeNav()">Testimonials</a>
         <a href="#alumni-work" onclick="closeNav()">Alumni Employers</a>
         <a href="#contact" onclick="closeNav()">Contact</a>
-        <span class="theme-toggle" onclick="toggleTheme()">☀️/🌙</span>
       </div>
     </nav>
   </header>
@@ -549,10 +534,6 @@
       document.querySelector('.nav-links').classList.remove('active');
       document.querySelector('.nav-overlay').classList.remove('active');
       document.body.style.overflow = '';
-    }
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.setAttribute('data-theme', html.getAttribute('data-theme') === 'light' ? 'dark' : 'light');
     }
     // Close menu on escape key
     document.addEventListener('keydown', function(e) {
