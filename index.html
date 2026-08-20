@@ -11,6 +11,7 @@
 <meta property="og:url" content="https://cybermoe.academy/">
 <meta property="og:image" content="https://www.cybermoe.academy/cyber-moe.jpg">
 <meta name="theme-color" content="#0B1220">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322D3EE'/%3E%3Cstop offset='1' stop-color='%233B82F6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-size='26' font-weight='700' text-anchor='middle' fill='%23070C16'%3ECM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -197,7 +198,8 @@ details.mod .body ul li::before{content:"›";position:absolute;left:0;color:var
 .instructor{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
 @media (max-width:900px){.instructor{grid-template-columns:1fr;gap:32px}}
 .portrait{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/4.6;background:linear-gradient(160deg,var(--navy-800),var(--navy-900));border:1px solid #E6EBF2;box-shadow:var(--shadow-lg)}
-.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+.portrait .badge{z-index:2}
 .portrait .fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--white);font-size:72px;font-weight:800;letter-spacing:-.04em;background:radial-gradient(600px 400px at 70% 20%,rgba(34,211,238,.25),transparent 60%),var(--navy-900)}
 .portrait .badge{position:absolute;left:16px;bottom:16px;right:16px;background:rgba(11,18,32,.82);backdrop-filter:blur(8px);color:var(--white);padding:12px 14px;border-radius:12px;font-size:13px;display:flex;gap:10px;align-items:center;border:1px solid rgba(255,255,255,.12)}
 .portrait .badge svg{width:18px;height:18px;color:var(--accent);flex:none}
@@ -215,7 +217,8 @@ details.mod .body ul li::before{content:"›";position:absolute;left:0;color:var
 .tcard blockquote{font-size:16px;color:var(--ink-900);line-height:1.6;flex:1}
 .tcard blockquote::before{content:"\201C";color:var(--accent-600);font-size:40px;line-height:0;vertical-align:-14px;margin-right:4px;font-family:Georgia,serif}
 .tcard .who{display:flex;gap:12px;align-items:center;border-top:1px solid #EEF2F7;padding-top:16px}
-.tcard .avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:var(--white);font-weight:700;font-size:15px;flex:none}
+.tcard .avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy-800),var(--navy-700));color:var(--white);font-weight:700;font-size:15px;flex:none;position:relative;overflow:hidden}
+.tcard .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .tcard .who b{display:block;font-size:15px}
 .tcard .who small{color:var(--ink-500);font-size:13px}
 .outcome{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,.12);color:#15803D;font-size:12.5px;font-weight:600;padding:5px 10px;border-radius:999px;align-self:flex-start}
@@ -608,19 +611,19 @@ footer .sources a{text-decoration:underline;text-underline-offset:2px}
         <div class="stars" aria-label="5 stars">★★★★★</div>
         <blockquote>I came in with zero cybersecurity experience. After completing CyberMoe's training and mentorship program, I landed an Information Systems Security Engineer role in the federal space. If you're serious about breaking into federal cybersecurity, this course is the real deal.</blockquote>
         <span class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Hired: Information Systems Security Engineer</span>
-        <div class="who"><div class="avatar">MN</div><div><b>Mark Nap</b><small>B.S., Penn State University</small></div></div>
+        <div class="who"><div class="avatar">MN<img src="https://www.cybermoe.academy/mark-nap.png" alt="Mark Nap" loading="lazy" onerror="this.remove()"></div><div><b>Mark Nap</b><small>B.S., Penn State University</small></div></div>
       </article>
       <article class="tcard">
         <div class="stars" aria-label="5 stars">★★★★★</div>
         <blockquote>As a veteran, I understood the importance of cybersecurity but needed the right guidance to break into the field. CyberMoe's expertise opened multiple doors on my cyber journey. Since completing the course, I've doubled my salary and gained the skills to thrive in this industry.</blockquote>
         <span class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Doubled salary after the course</span>
-        <div class="who"><div class="avatar">ZP</div><div><b>Zanein Prater</b><small>U.S. Air Force Veteran</small></div></div>
+        <div class="who"><div class="avatar">ZP<img src="https://www.cybermoe.academy/zanein-prater.png" alt="Zanein Prater" loading="lazy" onerror="this.remove()"></div><div><b>Zanein Prater</b><small>U.S. Air Force Veteran</small></div></div>
       </article>
       <article class="tcard">
         <div class="stars" aria-label="5 stars">★★★★★</div>
         <blockquote>As a U.S. combat veteran, I was leaving the military without a clear plan. CyberMoe introduced me to cybersecurity and taught me everything I needed to succeed in information security. Within months, I doubled my salary. I highly recommend CyberMoe Academy to anyone looking to make a career change.</blockquote>
         <span class="outcome"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Doubled salary within months</span>
-        <div class="who"><div class="avatar">MG</div><div><b>Marcus S. Gross</b><small>U.S. Army Veteran</small></div></div>
+        <div class="who"><div class="avatar">MG<img src="https://www.cybermoe.academy/marcus-gross.jpg" alt="Marcus S. Gross" loading="lazy" onerror="this.remove()"></div><div><b>Marcus S. Gross</b><small>U.S. Army Veteran</small></div></div>
       </article>
     </div>
   </div>
