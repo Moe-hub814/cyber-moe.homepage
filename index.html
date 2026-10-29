@@ -19,6 +19,48 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<!-- ================= TRACKING CONFIG =================
+     Fill these two IDs. Nothing loads until they are set, so the site is safe to deploy with placeholders.
+     META_PIXEL_ID  → Meta Events Manager → Data sources → your pixel (15–16 digits)
+     GA4_ID         → Google Analytics → Admin → Data streams → Measurement ID (G-XXXXXXXXXX)
+-->
+<script>
+window.CM_TRACKING = {
+  META_PIXEL_ID: '',
+  GA4_ID: 'G-XV7LHZPGLK'
+};
+</script>
+
+<!-- Google tag (gtag.js) — loaded only when GA4_ID is set -->
+<script>
+(function(){
+  var id = window.CM_TRACKING.GA4_ID;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function(){ dataLayer.push(arguments); };
+  if(!id) return;
+  var s = document.createElement('script'); s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+  document.head.appendChild(s);
+  gtag('js', new Date());
+  gtag('config', id, { send_page_view: true });
+})();
+</script>
+
+<!-- Meta Pixel — loaded only when META_PIXEL_ID is set -->
+<script>
+(function(){
+  var id = window.CM_TRACKING.META_PIXEL_ID;
+  if(!id) { window.fbq = window.fbq || function(){}; return; }
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id);
+  fbq('track', 'PageView');
+})();
+</script>
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
@@ -656,7 +698,7 @@ footer .sources a{text-decoration:underline;text-underline-offset:2px}
           <li>Mock interviews</li>
           <li>Job-search support</li>
         </ul>
-        <a class="btn btn-dark" href="https://cybermoeacademy.teachable.com/purchase?product_id=6611093" target="_blank" rel="noopener">Enroll Now</a>
+        <a class="btn btn-dark js-checkout" data-tier="Self-Paced Training" data-value="1497" data-product="6611093" href="https://cybermoeacademy.teachable.com/purchase?product_id=6611093" target="_blank" rel="noopener">Enroll Now</a>
         <p class="fine">Secure checkout via Teachable. Start immediately.</p>
       </div>
 
@@ -676,7 +718,7 @@ footer .sources a{text-decoration:underline;text-underline-offset:2px}
           <li>Salary-negotiation coaching</li>
           <li>Networking introductions</li>
         </ul>
-        <a class="btn btn-primary" href="https://cybermoeacademy.teachable.com/purchase?product_id=6611091" target="_blank" rel="noopener">Get Mentored — lock in $3,997</a>
+        <a class="btn btn-primary js-checkout" data-tier="Mentorship Training + Career Placement" data-value="3997" data-product="6611091" href="https://cybermoeacademy.teachable.com/purchase?product_id=6611091" target="_blank" rel="noopener">Get Mentored — lock in $3,997</a>
         <p class="fine">Limited mentorship seats so every student gets real attention. Payment plan available at checkout.</p>
         <!-- NOTE: enable the 3 x $1,799 payment plan on this product in Teachable (Pricing → Payment Plan) so the checkout matches this copy. After Sept 30, 2026, update the Teachable price to $4,997 and remove the founding-rate line above. -->
       </div>
@@ -809,15 +851,77 @@ footer .sources a{text-decoration:underline;text-underline-offset:2px}
   var form=document.getElementById('contactForm'),status=document.getElementById('formStatus');
   form.addEventListener('submit',function(ev){
     ev.preventDefault();
-    var name=form.name.value.trim(),email=form.email.value.trim(),topic=form.topic.value,msg=form.message.value.trim();
+    // Use form.elements — `form.name` resolves to the form's own name attribute, not the input.
+    var el=form.elements;
+    var name=el.namedItem('name').value.trim(),email=el.namedItem('email').value.trim(),topic=el.namedItem('topic').value,msg=el.namedItem('message').value.trim();
     if(!name||!email||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){status.textContent='Please enter your name and a valid email address.';return;}
     var subject=encodeURIComponent('CyberMoe Academy inquiry: '+topic);
     var body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nInterested in: '+topic+'\n\n'+msg);
+    // Conversion: a valid contact submission is a Lead
+    track('Lead','generate_lead',{content_name:topic, content_category:'contact_form', currency:'USD', value:0});
     window.location.href='mailto:contact@cybermoe.academy?subject='+subject+'&body='+body;
     status.textContent='Opening your email app… if nothing happens, email contact@cybermoe.academy directly.';
   });
 
   document.getElementById('year').textContent=new Date().getFullYear();
+
+  // ================= CONVERSION TRACKING =================
+  // Fires the same event to Meta (fbq) and GA4 (gtag). Both are no-ops until the IDs in
+  // window.CM_TRACKING are filled in, so this is safe on every deploy.
+  function track(metaEvent, gaEvent, params){
+    params = params || {};
+    try{ if(window.fbq) fbq('track', metaEvent, params); }catch(e){}
+    try{ if(window.gtag) gtag('event', gaEvent, params); }catch(e){}
+  }
+
+  // 1) Attribution: remember first-touch UTM / click IDs (90 days) so a visitor who comes back
+  //    later still carries the campaign that first brought them in.
+  var ATTR_KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  var attr={};
+  try{
+    var qs=new URLSearchParams(location.search), found=false;
+    ATTR_KEYS.forEach(function(k){ var v=qs.get(k); if(v){ attr[k]=v; found=true; } });
+    var saved=JSON.parse(localStorage.getItem('cm_attr')||'null');
+    if(found){ attr.ts=Date.now(); localStorage.setItem('cm_attr', JSON.stringify(attr)); }
+    else if(saved && (Date.now()-saved.ts) < 90*86400000){ attr=saved; }
+  }catch(e){}
+
+  // 2) Pass attribution through to Teachable checkout links so Teachable's sales report shows
+  //    which campaign each purchase came from.
+  document.querySelectorAll('a.js-checkout').forEach(function(a){
+    try{
+      var u=new URL(a.href);
+      ATTR_KEYS.forEach(function(k){ if(attr[k] && !u.searchParams.has(k)) u.searchParams.set(k, attr[k]); });
+      a.href=u.toString();
+    }catch(e){}
+    // 3) Clicking Enroll = start of checkout. Carries tier + value so Meta/GA can optimize on it.
+    a.addEventListener('click',function(){
+      track('InitiateCheckout','begin_checkout',{
+        content_name:a.dataset.tier, content_ids:[a.dataset.product], content_type:'product',
+        currency:'USD', value:Number(a.dataset.value)
+      });
+    });
+  });
+
+  // 4) Seeing the pricing section = ViewContent (fires once per visit). Useful for building a
+  //    "looked at pricing but didn't enroll" retargeting audience.
+  var pricing=document.getElementById('programs');
+  if(pricing && 'IntersectionObserver' in window){
+    var pio=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          track('ViewContent','view_item_list',{content_name:'Programs & pricing', content_category:'pricing'});
+          pio.disconnect();
+        }
+      });
+    },{threshold:.3});
+    pio.observe(pricing);
+  }
+
+  // 5) Instagram outbound click (GA4 only — handy for seeing site→IG flow)
+  document.querySelectorAll('a[href*="instagram.com"]').forEach(function(a){
+    a.addEventListener('click',function(){ try{ if(window.gtag) gtag('event','click_instagram',{link_url:a.href}); }catch(e){} });
+  });
 })();
 </script>
 </body>
